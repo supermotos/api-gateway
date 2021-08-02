@@ -15,5 +15,5 @@ zuul:
       service-id: auth-service
     api:
       path: /api/**
-      service-id: protected-service
+      service-id: example-service
   sensitive-headers: Cookie,Set-Cookie
