@@ -1,0 +1,33 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: api-gateway
+spec:
+  selector:
+    app: api-gateway
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+  labels:
+    app: api-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: fotopiece/api-gateway:latest
+          ports:
+            - containerPort: 8080

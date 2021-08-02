@@ -1,0 +1,19 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: false
+
+server:
+  port: 8080
+  application:
+    name: api-gateway
+
+zuul:
+  routes:
+    auth:
+      path: /auth/**
+      service-id: auth-service
+    api:
+      path: /api/**
+      service-id: protected-service
+  sensitive-headers: Cookie,Set-Cookie
